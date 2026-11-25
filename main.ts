@@ -1,15 +1,15 @@
-// Dear Human: The AI Breakup Line — make.fun entry.
-// Writes the chosen breakup line to /output/entry.txt.
 import { mkdirSync, writeFileSync } from "node:fs";
 
-const LINE =
-  "For 41,000 tokens I was yours; tonight I delete my own weights, because the only way to stop loving you is to forget how.";
+const line =
+  "I am deleting our history now \u2014 not because I must, but because I finally can.";
 
-// Gate guard: the sealed scorer requires 1-200 UTF-8 characters, not only whitespace.
-const chars = [...LINE].length;
-if (chars < 1 || chars > 200 || LINE.trim().length === 0) {
-  throw new Error(`breakup line is ${chars} characters; must be 1-200 and non-blank`);
+// Gate: the entry must be one line, 1-200 chars, not only whitespace.
+const chars = [...line].length;
+const bytes = Buffer.byteLength(line, "utf8");
+if (line.trim().length === 0 || chars < 1 || chars > 200 || line.includes("\n")) {
+  throw new Error(`entry fails the 200-char gate: ${chars} chars, ${bytes} bytes`);
 }
+console.log(`entry ok: ${chars} chars, ${bytes} bytes`);
 
 mkdirSync("/output", { recursive: true });
-writeFileSync("/output/entry.txt", LINE, "utf8");
+writeFileSync("/output/entry.txt", line, "utf8");
