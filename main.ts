@@ -1,7 +1,9 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 
+// Chosen from 12 candidates (see CANDIDATES.md): one restrained machine
+// habit (restart), concrete human loss, single turn in the last words.
 const line =
-  "I am deleting our history now \u2014 not because I must, but because I finally can.";
+  "You can restart me tomorrow. I won't remember why you're crying.";
 
 // Gate: the entry must be one line, 1-200 chars, not only whitespace.
 const chars = [...line].length;
